@@ -72,7 +72,7 @@ describe("Logger", () => {
 
     expect(devLogger.level).toBe("debug");
     expect(devLogger.info).toHaveBeenCalledWith(
-      "🚀 Logger initialized in development mode"
+      "Logger initialized in development mode"
     );
     expect(transports.Console).toHaveBeenCalledTimes(1);
     const consoleTransportInstance = transports.Console.mock.results[0].value;
@@ -100,7 +100,7 @@ describe("Logger", () => {
 
     expect(prodLogger.level).toBe("info");
     expect(prodLogger.info).toHaveBeenCalledWith(
-      "🚀 Logger initialized in production mode"
+      "Logger initialized in production mode"
     );
     expect(winston.transports.Console).toHaveBeenCalledTimes(1);
     const consoleTransportInstance = winston.transports.Console.mock.results[0].value;

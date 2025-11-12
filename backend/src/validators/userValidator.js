@@ -1,6 +1,5 @@
 const { body } = require("express-validator");
 
-// Validation rules for user registration
 const validateRegister = [
   body("username")
     .trim()
@@ -15,7 +14,6 @@ const validateRegister = [
     .isLength({ min: 6 }).withMessage("Please choose a password with at least 6 characters.")
 ];
 
-// Validation rules for user login
 const validateLogin = [
   body("email")
     .trim()
@@ -25,7 +23,6 @@ const validateLogin = [
     .notEmpty().withMessage("Password can’t be empty — please enter your password.")
 ];
 
-// Validation rules for profile updates
 const validateProfileUpdate = [
   body("username")
     .optional()
