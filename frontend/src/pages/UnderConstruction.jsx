@@ -12,7 +12,7 @@ const UnderConstruction = () => {
         <p>We're working hard to bring you this page soon!</p>
         <p>Please check back later or visit other sections of our application.</p>
         <div className="back-button">
-          <a href="/dashboard" className="ucbtn btn-primary">Go to Dashboard</a>
+          <a href="/dashboard" className="uc-btn uc-btn-primary">Go to Dashboard</a>
         </div>
       </div>
     </div>
