@@ -64,7 +64,7 @@ describe('User Management', () => {
     expect(res.status).toHaveBeenCalledWith(201)
     expect(res.json).toHaveBeenCalledWith({
       success: true,
-      message: 'User registered successfully.',
+      message: 'User registered successfully..',
       user: createdUser
     })
   })
@@ -90,7 +90,7 @@ describe('User Management', () => {
     expect(userService.findUserByEmail).toHaveBeenCalledWith(loginData.email)
     expect(res.json).toHaveBeenCalledWith({
       success: true,
-      message: 'Login successful.',
+      message: 'Login successfully..',
       user: { id: user.id, username: user.username, email: user.email, role: user.role },
       tokens: { accessToken: expect.any(String), refreshToken: expect.any(String) }
     })

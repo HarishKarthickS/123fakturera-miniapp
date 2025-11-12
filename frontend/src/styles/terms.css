@@ -1,0 +1,80 @@
+.terms-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0rem 1rem 4rem;
+  flex-direction: column;
+  background: transparent;
+}
+
+.terms-card {
+  background: #fff;
+  color: #000;
+  padding: 2rem 2.5rem;
+  border-radius: 25px;
+  max-width: 750px ;
+  width: 86vw;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.terms-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+}
+
+.terms-btn-wrapper {
+  margin-bottom: 2rem;
+}
+
+.terms-btn {
+  background: #009933;
+  color: #fff;
+  border: none;
+  padding: 0.9rem 2.5rem;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.terms-btn:hover {
+  background: #007a2a;
+}
+
+.terms-body {
+  text-align: center;
+  line-height: 1.7;
+  font-size:1rem;
+  color: #222;
+  margin-bottom: 2rem;
+}
+
+.terms-body b {
+  font-weight: 700;
+}
+
+.terms-btn-bottom {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .terms-card {
+    padding: 1.8rem 1.5rem;
+  }
+
+  .terms-title {
+    font-size: 1.5rem;
+  }
+
+  .terms-btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}

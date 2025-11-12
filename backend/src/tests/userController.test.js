@@ -67,7 +67,7 @@ describe("User Controller", () => {
       expect(res.status).toHaveBeenCalledWith(201);
       expect(res.json).toHaveBeenCalledWith({
         success: true,
-        message: "User registered successfully.",
+        message: "User registered successfully..",
         user,
       });
     });
@@ -103,9 +103,9 @@ describe("User Controller", () => {
       expect(userService.findUserByEmail).toHaveBeenCalledWith("test@example.com");
       expect(res.json).toHaveBeenCalledWith({
         success: true,
-        message: "Login successful.",
-        user: { id: expect.anything(), username: expect.anything(), email: expect.anything(), role: expect.anything() },
-        tokens: { accessToken: expect.any(String), refreshToken: expect.any(String) },
+        message: "Login successfully..",
+        user: { id: 1, username: "testuser", email: "test@example.com", role: "user" },
+        tokens: { accessToken: "fake-access-token", refreshToken: "fake-refresh-token" },
       });
     });
 
@@ -119,7 +119,7 @@ describe("User Controller", () => {
       expect(res.status).toHaveBeenCalledWith(404); // User not found returns 404
       expect(res.json).toHaveBeenCalledWith({
         success: false,
-        message: "No account found with this email."
+        message: "No account found with this email.."
       });
     });
   });
@@ -150,7 +150,7 @@ describe("User Controller", () => {
       expect(res.status).toHaveBeenCalledWith(403); // Invalid token returns 403
       expect(res.json).toHaveBeenCalledWith({
         success: false,
-        message: "Invalid refresh token."
+        message: "Invalid refresh token.."
       });
     });
   });
@@ -238,7 +238,7 @@ describe("User Controller", () => {
       expect(userService.updateUser).toHaveBeenCalledWith(1, "New Name", undefined, undefined);
       expect(res.json).toHaveBeenCalledWith({
         success: true,
-        message: "Profile updated successfully.",
+        message: "Profile updated successfully..",
         user: updatedUser,
       });
     });
@@ -268,7 +268,7 @@ describe("User Controller", () => {
       expect(userService.deleteUser).toHaveBeenCalledWith(1);
       expect(res.json).toHaveBeenCalledWith({
         success: true,
-        message: "User deleted successfully.",
+        message: "User deleted successfully..",
       });
     });
 

@@ -27,15 +27,14 @@ BEFORE UPDATE ON users
 FOR EACH ROW
 EXECUTE FUNCTION update_modified_column();
 
--- Create 'page_content' table for multilingual static content
 CREATE TABLE IF NOT EXISTS page_content (
   id SERIAL PRIMARY KEY,
-  page_name VARCHAR(100) NOT NULL,        -- e.g., 'login', 'terms', 'home', 'navbar' (for shared components)
-  section VARCHAR(100) NOT NULL,          -- e.g., 'header', 'body', 'footer', 'hero', 'nav'
-  component_key VARCHAR(100) NOT NULL,    -- e.g., 'nav_home', 'title', 'button_submit', 'description'
+  page_name VARCHAR(100) NOT NULL,
+  section VARCHAR(100) NOT NULL,
+  component_key VARCHAR(100) NOT NULL,
   language VARCHAR(5) NOT NULL CHECK (language IN ('en', 'sv')),
   content TEXT NOT NULL,
-  display_order INT DEFAULT 0,            -- For ordering components within a section
+  display_order INT DEFAULT 0,
   last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   UNIQUE (page_name, section, component_key, language)
 );
@@ -43,7 +42,6 @@ CREATE TABLE IF NOT EXISTS page_content (
 CREATE INDEX IF NOT EXISTS idx_page_content_lookup ON page_content(page_name, language);
 CREATE INDEX IF NOT EXISTS idx_page_section_lookup ON page_content(page_name, section, language);
 
--- Create 'products' table for all items and services
 CREATE TABLE IF NOT EXISTS products (
   id SERIAL PRIMARY KEY,
   article_no VARCHAR(50) UNIQUE NOT NULL,
@@ -57,14 +55,12 @@ CREATE TABLE IF NOT EXISTS products (
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Add a trigger to auto-update 'updated_at' for product updates
 DROP TRIGGER IF EXISTS update_product_timestamp ON products;
 CREATE TRIGGER update_product_timestamp
 BEFORE UPDATE ON products
 FOR EACH ROW
 EXECUTE FUNCTION update_modified_column();
 
--- Create 'logs' table for system activity tracking
 CREATE TABLE IF NOT EXISTS logs (
   id SERIAL PRIMARY KEY,
   user_id INT REFERENCES users(id) ON DELETE SET NULL,

@@ -1,7 +1,5 @@
 const jwt = require("jsonwebtoken");
 const logger = require("../utils/logger");
-
-// Mock process.env before requiring authUtils
 const MOCKED_JWT_SECRET = "test_secret";
 const MOCKED_REFRESH_SECRET = "test_refresh_secret";
 const MOCKED_ACCESS_TOKEN_EXPIRY = "1h";
@@ -18,12 +16,11 @@ jest.mock("../utils/logger", () => ({
   error: jest.fn(),
 }));
 
-// Mock process.env directly
 process.env.JWT_SECRET = MOCKED_JWT_SECRET;
 process.env.REFRESH_SECRET = MOCKED_REFRESH_SECRET;
 process.env.ACCESS_TOKEN_EXPIRY = MOCKED_ACCESS_TOKEN_EXPIRY;
 process.env.REFRESH_TOKEN_EXPIRY = MOCKED_REFRESH_TOKEN_EXPIRY;
-process.env.NODE_ENV = "development"; // Ensure non-production expiry is used
+process.env.NODE_ENV = "development";
 
 const authUtils = require("../utils/authUtils");
 
@@ -46,7 +43,7 @@ describe("Auth Utils", () => {
         { expiresIn: expect.any(String) }
       );
       expect(logger.info).toHaveBeenCalledWith(
-        `Access token issued for ${mockUser.email}`
+        `Access token issued for ${mockUser.email}..`
       );
       expect(token).toBe(mockAccessToken);
     });
@@ -62,7 +59,7 @@ describe("Auth Utils", () => {
         { expiresIn: expect.any(String) }
       );
       expect(logger.info).toHaveBeenCalledWith(
-        `Refresh token issued for ${mockUser.email}`
+        `Refresh token issued for ${mockUser.email}..`
       );
       expect(token).toBe(mockRefreshToken);
     });
@@ -83,7 +80,7 @@ describe("Auth Utils", () => {
       });
       expect(() => authUtils.verifyAccessToken(mockAccessToken)).toThrow(error);
       expect(logger.warn).toHaveBeenCalledWith(
-        `Access token verification failed: ${error.message}`
+        `Access token verification failed: ${error.message}..`
       );
     });
   });
@@ -106,7 +103,7 @@ describe("Auth Utils", () => {
       });
       expect(() => authUtils.verifyRefreshToken(mockRefreshToken)).toThrow(error);
       expect(logger.warn).toHaveBeenCalledWith(
-        `Refresh token verification failed: ${error.message}`
+        `Refresh token verification failed: ${error.message}..`
       );
     });
   });
@@ -123,7 +120,7 @@ describe("Auth Utils", () => {
         [userId]
       );
       expect(logger.info).toHaveBeenCalledWith(
-        `Refresh token invalidated for user ID ${userId}`
+        `Refresh token invalidated for user ID ${userId}..`
       );
     });
 
@@ -135,7 +132,7 @@ describe("Auth Utils", () => {
       const error = new Error("DB error");
       await authUtils.invalidateToken(userId, mockPool);
       expect(logger.error).toHaveBeenCalledWith(
-        `Error invalidating refresh token: ${error.message}`
+        `Error invalidating refresh token: ${error.message}..`
       );
     });
   });

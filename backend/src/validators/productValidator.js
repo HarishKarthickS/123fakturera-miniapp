@@ -1,6 +1,5 @@
 const { body } = require("express-validator");
 
-// Validation for adding a new product
 const validateCreateProduct = [
   body("article_no")
     .trim()
@@ -46,7 +45,6 @@ const validateCreateProduct = [
     .withMessage("Description should not exceed 1000 characters."),
 ];
 
-// Validation for updating a product
 const validateUpdateProduct = [
   body("item_name")
     .optional()

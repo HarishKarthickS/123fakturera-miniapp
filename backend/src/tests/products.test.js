@@ -40,7 +40,7 @@ describe('Product Management', () => {
     expect(res.status).toHaveBeenCalledWith(201)
     expect(res.json).toHaveBeenCalledWith({
       success: true,
-      message: 'Product created successfully.',
+      message: 'Product created successfully..',
       product: createdProduct
     })
   })
@@ -57,7 +57,7 @@ describe('Product Management', () => {
     expect(res.status).toHaveBeenCalledWith(200)
     expect(res.json).toHaveBeenCalledWith({
       success: true,
-      message: 'All products fetched successfully.',
+      message: 'All products fetched successfully..',
       count: products.length,
       products
     })
@@ -75,7 +75,7 @@ describe('Product Management', () => {
     expect(res.status).toHaveBeenCalledWith(200)
     expect(res.json).toHaveBeenCalledWith({
       success: true,
-      message: 'Product details retrieved successfully.',
+      message: 'Product details retrieved successfully..',
       product
     })
   })
@@ -94,7 +94,7 @@ describe('Product Management', () => {
     expect(res.status).toHaveBeenCalledWith(200)
     expect(res.json).toHaveBeenCalledWith({
       success: true,
-      message: 'Product updated successfully.',
+      message: 'Product updated successfully..',
       product: updatedProduct
     })
   })

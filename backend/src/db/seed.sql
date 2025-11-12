@@ -1,14 +1,7 @@
--- Seed an admin user (ensure password is bcrypt hashed)
 INSERT INTO users (username, email, password, role)
-VALUES (
-  'admin',
-  'admin@123fakturera.se',
-  '$2a$10$fdf6tIteIp0MlDEqwywDsurcId8/1sWntpgVXZWiBPc/8FFyd02mK',
-  'admin'
-)
+VALUES ('admin', 'admin@123fakturera.se', '$2a$10$fdf6tIteIp0MlDEqwywDsurcId8/1sWntpgVXZWiBPc/8FFyd02mK', 'admin')
 ON CONFLICT (email) DO NOTHING;
 
--- Seed 25 sample products for demo/testing
 INSERT INTO products (article_no, item_name, in_price, out_price, unit, in_stock, description)
 VALUES
 ('1234567890', 'Test Product 1', 900500, 1500800, 'kilometers/hour', 2500600, 'This is a test product for system verification.'),
@@ -38,10 +31,8 @@ VALUES
 ('4445556668', 'Video Editing', 120000, 200000, 'project', 15, 'Professional editing for promotional videos')
 ON CONFLICT (article_no) DO NOTHING;
 
-
 INSERT INTO page_content (page_name, section, component_key, language, content, display_order)
 VALUES
--- English Terms Page
 ('terms', 'nav', 'nav_home', 'en', 'Home', 1),
 ('terms', 'nav', 'nav_order', 'en', 'Order', 2),
 ('terms', 'nav', 'nav_customers', 'en', 'Our Customers', 3),
@@ -50,7 +41,7 @@ VALUES
 ('terms', 'nav', 'nav_terms', 'en', 'Terms', 6),
 ('terms', 'nav', 'nav_login', 'en', 'Login', 7),
 ('terms', 'nav', 'lang_switcher', 'en', 'English', 8),
-('terms', 'body', 'title', 'en', 'Terms | Villkor', 1),
+('terms', 'body', 'title', 'en', 'Terms', 1),
 ('terms', 'body', 'content', 'en', 'BY clicking Invoice Now, you choose to register according to the information that you have typed in and the text on the registration page and the terms here, and you at the same time accept the terms here.
 
 You can use the program FOR FREE for 14 days.
@@ -101,8 +92,6 @@ Our experience is that our customers are very satisfied with the way we work and
 
 Have a great day!', 2),
 ('terms', 'body', 'button', 'en', 'Close and Go Back', 3),
-
--- Swedish Terms Page
 ('terms', 'nav', 'nav_home', 'sv', 'Hem', 1),
 ('terms', 'nav', 'nav_order', 'sv', 'Beställ', 2),
 ('terms', 'nav', 'nav_customers', 'sv', 'Våra Kunder', 3),
@@ -111,7 +100,7 @@ Have a great day!', 2),
 ('terms', 'nav', 'nav_terms', 'sv', 'Villkor', 6),
 ('terms', 'nav', 'nav_login', 'sv', 'Logga in', 7),
 ('terms', 'nav', 'lang_switcher', 'sv', 'Svenska', 8),
-('terms', 'body', 'title', 'sv', 'Terms | Villkor', 1),
+('terms', 'body', 'title', 'sv', 'Villkor', 1),
 ('terms', 'body', 'content', 'sv', 'GENOM ATT klicka på Fakturera Nu så väljer ni att registrera enligt den information som ni har lagt in och texten på registrerings sidan och villkoren här, och accepterar samtidigt villkoren här.
 
 Ni kan använda programmet GRATIS i 14 dagar.
@@ -161,12 +150,7 @@ Klicka på Fakturera Nu för att registrera i enlighet med den information som n
 Vår erfarenhet är att våra kunder är mycket nöjda med sättet vi arbetar på och vi hoppas och tror att det också kommer att bli er upplevelse.
 
 Ha en trevlig dag!', 2),
-('terms', 'body', 'button', 'sv', 'Stäng och gå tillbaka', 3)
-ON CONFLICT (page_name, section, component_key, language) DO NOTHING;
-
-INSERT INTO page_content (page_name, section, component_key, language, content, display_order)
-VALUES
--- Login Page - English
+('terms', 'body', 'button', 'sv', 'Stäng och gå tillbaka', 3),
 ('login', 'header', 'title', 'en', 'Log in', 1),
 ('login', 'form', 'email_label', 'en', 'Enter your email address', 1),
 ('login', 'form', 'email_placeholder', 'en', 'Email address', 2),
@@ -175,8 +159,6 @@ VALUES
 ('login', 'form', 'button_submit', 'en', 'Log in', 5),
 ('login', 'actions', 'link_register', 'en', 'Register', 1),
 ('login', 'actions', 'link_forgot_password', 'en', 'Forgotten password?', 2),
-
--- Login Page - Swedish
 ('login', 'nav', 'nav_home', 'sv', 'Hem', 1),
 ('login', 'nav', 'nav_order', 'sv', 'Beställ', 2),
 ('login', 'nav', 'nav_customers', 'sv', 'Våra Kunder', 3),
@@ -193,8 +175,6 @@ VALUES
 ('login', 'form', 'button_submit', 'sv', 'Logga in', 5),
 ('login', 'actions', 'link_register', 'sv', 'Registrera dig', 1),
 ('login', 'actions', 'link_forgot_password', 'sv', 'Glömt lösenord?', 2),
-
--- login - English
 ('login', 'nav', 'nav_home', 'en', 'Home', 1),
 ('login', 'nav', 'nav_order', 'en', 'Order', 2),
 ('login', 'nav', 'nav_customers', 'en', 'Our Customers', 3),
@@ -208,18 +188,19 @@ VALUES
 ('login', 'links', 'nav_order', 'en', 'Order', 2),
 ('login', 'links', 'nav_contact', 'en', 'Contact us', 3),
 ('login', 'copyright', 'copyright_text', 'en', '© Lättfaktura, CRO no. 638537, 2025. All rights reserved.', 1),
-
--- login - Swedish
 ('login', 'brand', 'brand_name', 'sv', '123 Fakturera', 1),
 ('login', 'links', 'nav_home', 'sv', 'Hem', 1),
 ('login', 'links', 'nav_order', 'sv', 'Beställ', 2),
 ('login', 'links', 'nav_contact', 'sv', 'Kontakta oss', 3),
-('login', 'copyright', 'copyright_text', 'sv', '© Lättfaktura, CRO no. 638537, 2025. All rights reserved.', 1)
-ON CONFLICT (page_name, section, component_key, language) DO NOTHING;
-
-INSERT INTO page_content (page_name, section, component_key, language, content, display_order)
-VALUES
--- Register Page - English
+('login', 'copyright', 'copyright_text', 'sv', '© Lättfaktura, CRO no. 638537, 2025. All rights reserved.', 1),
+('login', 'validation', 'email_required', 'en', 'Email is required', 1),
+('login', 'validation', 'email_invalid', 'en', 'Enter a valid email address', 2),
+('login', 'validation', 'password_required', 'en', 'Password is required', 3),
+('login', 'validation', 'password_too_short', 'en', 'Password must be at least 6 characters long', 4),
+('login', 'validation', 'email_required', 'sv', 'E-post krävs', 1),
+('login', 'validation', 'email_invalid', 'sv', 'Ange en giltig e-postadress', 2),
+('login', 'validation', 'password_required', 'sv', 'Lösenord krävs', 3),
+('login', 'validation', 'password_too_short', 'sv', 'Lösenordet måste vara minst 6 tecken långt', 4),
 ('register', 'nav', 'nav_home', 'en', 'Home', 1),
 ('register', 'nav', 'nav_order', 'en', 'Order', 2),
 ('register', 'nav', 'nav_customers', 'en', 'Our Customers', 3),
@@ -243,8 +224,6 @@ VALUES
 ('register', 'links', 'nav_order', 'en', 'Order', 2),
 ('register', 'links', 'nav_contact', 'en', 'Contact us', 3),
 ('register', 'copyright', 'copyright_text', 'en', '© Lättfaktura, CRO no. 638537, 2025. All rights reserved.', 1),
-
--- Register Page - Swedish
 ('register', 'header', 'title', 'sv', 'Registrera dig', 1),
 ('register', 'form', 'name_label', 'sv', 'Ange ditt fullständiga namn', 1),
 ('register', 'form', 'name_placeholder', 'sv', 'Fullständigt namn', 2),
@@ -266,13 +245,7 @@ VALUES
 ('register', 'nav', 'nav_contact', 'sv', 'Kontakta oss', 5),
 ('register', 'nav', 'nav_terms', 'sv', 'Villkor', 6),
 ('register', 'nav', 'nav_login', 'sv', 'Logga in', 7),
-('register', 'nav', 'lang_switcher', 'sv', 'Svenska', 8)
-ON CONFLICT (page_name, section, component_key, language) DO NOTHING;
-
-
-INSERT INTO page_content (page_name, section, component_key, language, content, display_order)
-VALUES
--- Dashboard Navigation Sidebar (Full Menu)
+('register', 'nav', 'lang_switcher', 'sv', 'Svenska', 8),
 ('dashboard', 'nav', 'nav_invoices', 'en', 'Invoices', 1),
 ('dashboard', 'nav', 'nav_customers', 'en', 'Customers', 2),
 ('dashboard', 'nav', 'nav_my_business', 'en', 'My Business', 3),
@@ -285,8 +258,6 @@ VALUES
 ('dashboard', 'nav', 'nav_member_invoicing', 'en', 'Member Invoicing', 10),
 ('dashboard', 'nav', 'nav_import_export', 'en', 'Import/Export', 11),
 ('dashboard', 'nav', 'nav_logout', 'en', 'Log out', 12),
-
--- Dashboard Navigation Sidebar (Full Menu - Swedish)
 ('dashboard', 'nav', 'nav_invoices', 'sv', 'Fakturor', 1),
 ('dashboard', 'nav', 'nav_customers', 'sv', 'Kunder', 2),
 ('dashboard', 'nav', 'nav_my_business', 'sv', 'Min Verksamhet', 3),
@@ -299,42 +270,93 @@ VALUES
 ('dashboard', 'nav', 'nav_member_invoicing', 'sv', 'Medlemsfakturering', 10),
 ('dashboard', 'nav', 'nav_import_export', 'sv', 'Import/Export', 11),
 ('dashboard', 'nav', 'nav_logout', 'sv', 'Logga ut', 12),
-
--- Dashboard Main Content (Price List View) - English
 ('dashboard', 'content', 'page_title', 'en', 'Price List', 1),
 ('dashboard', 'content', 'search_placeholder', 'en', 'Search products...', 2),
-
--- Dashboard Action Buttons - English
 ('dashboard', 'actions', 'button_new_product', 'en', 'New Product', 1),
 ('dashboard', 'actions', 'button_print_list', 'en', 'Print List', 2),
-
--- Dashboard Table Headers - English
 ('dashboard', 'table', 'col_article_no', 'en', 'Article No.', 1),
 ('dashboard', 'table', 'col_product_service', 'en', 'Product/Service', 2),
 ('dashboard', 'table', 'col_in_price', 'en', 'In Price', 3),
 ('dashboard', 'table', 'col_out_price', 'en', 'Out Price', 4),
 ('dashboard', 'table', 'col_unit', 'en', 'Unit', 5),
 ('dashboard', 'table', 'col_in_stock', 'en', 'In Stock', 6),
-
--- Dashboard Main Content (Price List View) - Swedish
+('dashboard', 'table', 'col_description', 'en', 'Description', 7),
 ('dashboard', 'content', 'page_title', 'sv', 'Prislista', 1),
 ('dashboard', 'content', 'search_placeholder', 'sv', 'Sök produkter...', 2),
-
--- Dashboard Action Buttons - Swedish
 ('dashboard', 'actions', 'button_new_product', 'sv', 'Ny produkt', 1),
 ('dashboard', 'actions', 'button_print_list', 'sv', 'Skriv ut lista', 2),
-
--- Dashboard Table Headers - Swedish
 ('dashboard', 'table', 'col_article_no', 'sv', 'Artikelnummer', 1),
 ('dashboard', 'table', 'col_product_service', 'sv', 'Produkt/Tjänst', 2),
 ('dashboard', 'table', 'col_in_price', 'sv', 'Inköpspris', 3),
 ('dashboard', 'table', 'col_out_price', 'sv', 'Försäljningspris', 4),
 ('dashboard', 'table', 'col_unit', 'sv', 'Enhet', 5),
-('dashboard', 'table', 'col_in_stock', 'sv', 'I lager', 6)
+('dashboard', 'table', 'col_in_stock', 'sv', 'I lager', 6),
+('dashboard', 'table', 'col_description', 'sv', 'Beskrivning', 7),
+('register', 'nav', 'nav_home', 'en', 'Home', 1),
+('register', 'nav', 'nav_order', 'en', 'Order', 2),
+('register', 'nav', 'nav_customers', 'en', 'Our Customers', 3),
+('register', 'nav', 'nav_about', 'en', 'About us', 4),
+('register', 'nav', 'nav_contact', 'en', 'Contact Us', 5),
+('register', 'nav', 'nav_terms', 'en', 'Terms', 6),
+('register', 'nav', 'nav_login', 'en', 'Login', 7),
+('register', 'nav', 'lang_switcher', 'en', 'English', 8),
+('register', 'header', 'title', 'en', 'Register', 1),
+('register', 'form', 'username_label', 'en', 'Enter your username', 1),
+('register', 'form', 'username_placeholder', 'en', 'Username', 2),
+('register', 'form', 'email_label', 'en', 'Enter your email address', 3),
+('register', 'form', 'email_placeholder', 'en', 'Email address', 4),
+('register', 'form', 'password_label', 'en', 'Enter your password', 5),
+('register', 'form', 'password_placeholder', 'en', 'Password', 6),
+('register', 'form', 'button_submit', 'en', 'Register', 7),
+('register', 'actions', 'link_login', 'en', 'Already have an account? Log in', 1),
+('register', 'actions', 'link_forgot_password', 'en', 'Forgotten password?', 2),
+('register', 'validation', 'username_required', 'en', 'Username is required', 1),
+('register', 'validation', 'username_too_short', 'en', 'Username must be at least 3 characters', 2),
+('register', 'validation', 'email_required', 'en', 'Email is required', 3),
+('register', 'validation', 'email_invalid', 'en', 'Enter a valid email address', 4),
+('register', 'validation', 'password_required', 'en', 'Password is required', 5),
+('register', 'validation', 'password_too_short', 'en', 'Password must be at least 6 characters long', 6),
+('register', 'validation', 'registration_failed', 'en', 'Registration failed. Try again.', 7),
+('register', 'validation', 'server_error', 'en', 'Server error. Try again later.', 8),
+('register', 'brand', 'brand_name', 'en', '123 Fakturera', 1),
+('register', 'links', 'nav_home', 'en', 'Home', 1),
+('register', 'links', 'nav_order', 'en', 'Order', 2),
+('register', 'links', 'nav_contact', 'en', 'Contact us', 3),
+('register', 'copyright', 'copyright_text', 'en', '© Lättfaktura, CRO no. 638537, 2025. All rights reserved.', 1),
+('register', 'nav', 'nav_home', 'sv', 'Hem', 1),
+('register', 'nav', 'nav_order', 'sv', 'Beställ', 2),
+('register', 'nav', 'nav_customers', 'sv', 'Våra Kunder', 3),
+('register', 'nav', 'nav_about', 'sv', 'Om oss', 4),
+('register', 'nav', 'nav_contact', 'sv', 'Kontakta oss', 5),
+('register', 'nav', 'nav_terms', 'sv', 'Villkor', 6),
+('register', 'nav', 'nav_login', 'sv', 'Logga in', 7),
+('register', 'nav', 'lang_switcher', 'sv', 'Svenska', 8),
+('register', 'header', 'title', 'sv', 'Registrera dig', 1),
+('register', 'form', 'username_label', 'sv', 'Ange ditt användarnamn', 1),
+('register', 'form', 'username_placeholder', 'sv', 'Användarnamn', 2),
+('register', 'form', 'email_label', 'sv', 'Skriv in din e-postadress', 3),
+('register', 'form', 'email_placeholder', 'sv', 'E-postadress', 4),
+('register', 'form', 'password_label', 'sv', 'Skriv in ditt lösenord', 5),
+('register', 'form', 'password_placeholder', 'sv', 'Lösenord', 6),
+('register', 'form', 'button_submit', 'sv', 'Registrera dig', 7),
+('register', 'actions', 'link_login', 'sv', 'Har du redan ett konto? Logga in', 1),
+('register', 'actions', 'link_forgot_password', 'sv', 'Glömt lösenord?', 2),
+('register', 'validation', 'username_required', 'sv', 'Användarnamn krävs', 1),
+('register', 'validation', 'username_too_short', 'sv', 'Användarnamnet måste vara minst 3 tecken långt', 2),
+('register', 'validation', 'email_required', 'sv', 'E-post krävs', 3),
+('register', 'validation', 'email_invalid', 'sv', 'Ange en giltig e-postadress', 4),
+('register', 'validation', 'password_required', 'sv', 'Lösenord krävs', 5),
+('register', 'validation', 'password_too_short', 'sv', 'Lösenordet måste vara minst 6 tecken långt', 6),
+('register', 'validation', 'registration_failed', 'sv', 'Registreringen misslyckades. Försök igen.', 7),
+('register', 'validation', 'server_error', 'sv', 'Serverfel. Försök igen senare.', 8),
+('register', 'brand', 'brand_name', 'sv', '123 Fakturera', 1),
+('register', 'links', 'nav_home', 'sv', 'Hem', 1),
+('register', 'links', 'nav_order', 'sv', 'Beställ', 2),
+('register', 'links', 'nav_contact', 'sv', 'Kontakta oss', 3),
+('register', 'copyright', 'copyright_text', 'sv', '© Lättfaktura, CRO no. 638537, 2025. All rights reserved.', 1)
 ON CONFLICT (page_name, section, component_key, language) DO NOTHING;
 
--- ✅ Confirmation
 DO $$
 BEGIN
-  RAISE NOTICE '🌱 Seed data inserted successfully (if not already present)';
+  RAISE NOTICE 'Seed data inserted successfully (if not already present)';
 END$$;

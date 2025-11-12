@@ -1,6 +1,5 @@
 const { body, param } = require("express-validator");
 
-// Validator for CREATING new page content
 const validateCreatePageContent = [
   body("page_name")
     .trim()
@@ -41,7 +40,6 @@ const validateCreatePageContent = [
     .withMessage("Display order must be a non-negative integer."),
 ];
 
-// Validator for UPDATING existing page content (by ID)
 const validateUpdatePageContent = [
   body("content")
     .trim()
@@ -54,9 +52,8 @@ const validateUpdatePageContent = [
     .withMessage("Display order must be a non-negative integer."),
 ];
 
-// Validator for fetching page content by name and language from path parameters
 const validatePageParams = [
-  param("pageName") // Updated from "page" to match the controller
+  param("pageName")
     .trim()
     .notEmpty()
     .withMessage("Page name is required in the URL.")
@@ -71,7 +68,6 @@ const validatePageParams = [
     .withMessage("Language must be 'en' or 'sv'.")
 ];
 
-// Validator for fetching a single content item by its ID
 const validateContentId = [
   param("id")
     .isInt({ min: 1 })

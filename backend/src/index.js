@@ -4,41 +4,32 @@ const cors = require("cors");
 const { connectDB } = require("./db/db");
 const errorHandler = require("./middleware/errorHandler");
 const logger = require("./utils/logger");
-
-// Routes
 const userRoutes = require("./routes/userRoutes");
 const productRoutes = require("./routes/productRoutes");
 const pageContentRoutes = require("./routes/pageContentRoutes");
 
 const app = express();
-
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Logging setup
 if (process.env.NODE_ENV === "production") {
   app.use(morgan("combined", { stream: logger.stream }));
-  logger.info("🪵 Morgan logging enabled (production mode)");
+  logger.info("Morgan logging enabled (production mode)");
 } else {
   app.use(morgan("dev"));
-  logger.info("🪵 Morgan logging enabled (development mode)");
+  logger.info("Morgan logging enabled (development mode)");
 }
 
-// route mounts
-app.use("/api/users", userRoutes);
-app.use("/api/products", productRoutes);
-app.use("/api/pages", pageContentRoutes);
+app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/products", productRoutes);
+app.use("/api/v1/pages", pageContentRoutes);
 
-// Default route
-app.get("/", (req, res) => {
-  res.json({ success: true, message: "Backend API is running 🚀" });
+app.get("/api/", (req, res) => {
+  res.json({ success: true, message: "Backend API is running" });
 });
 
-// Error handler
 app.use(errorHandler);
 
-// Startup
 (async () => {
   try {
     await connectDB();

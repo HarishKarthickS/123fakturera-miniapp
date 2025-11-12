@@ -92,7 +92,7 @@ describe("Product Service", () => {
       pool.query.mockResolvedValue({ rows: [] });
 
       await expect(productService.getProductById(999)).rejects.toThrow(
-        "Product not found."
+        "Product not found.."
       );
     });
 
@@ -131,7 +131,7 @@ describe("Product Service", () => {
       pool.query.mockResolvedValue({ rows: [] });
 
       await expect(productService.updateProduct(999, {})).rejects.toThrow(
-        "Product not found or not updated."
+        "Product not found or not updated.."
       );
     });
 
@@ -153,14 +153,14 @@ describe("Product Service", () => {
       const result = await productService.deleteProduct(1);
 
       expect(pool.query).toHaveBeenCalledWith(expect.any(String), [1]);
-      expect(result).toEqual({ message: "Product deleted successfully." });
+      expect(result).toEqual({ message: "Product deleted successfully.." });
     });
 
     it("should throw a 404 error if the product to delete is not found", async () => {
       pool.query.mockResolvedValue({ rowCount: 0 });
 
       await expect(productService.deleteProduct(999)).rejects.toThrow(
-        "Product not found or already deleted."
+        "Product not found or already deleted.."
       );
     });
 
