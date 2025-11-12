@@ -24,4 +24,4 @@ Here are a few screenshots showcasing the application interface:
 2. Run `docker-compose up --build`  
 3. Open [http://localhost](http://localhost) in your browser
 
-## Deployed Link[http://70.34.223.207/]
+## Deployed Link : [Link](http://70.34.223.207/)
