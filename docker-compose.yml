@@ -31,12 +31,13 @@ services:
       DB_PASSWORD: password
       DB_NAME: mydb
       DATABASE_URL: postgres://user:password@postgres:5432/mydb
-    expose:
-      - "8000"
+    ports:
+      - "8000:8000"
     command: ["npm", "start"]
     working_dir: /app
     volumes:
-      - ./backend:/app
+      - ./backend:/app:cached
+      - /app/node_modules
 
   frontend:
     build:
@@ -49,7 +50,7 @@ services:
     ports:
       - "80:80"
     environment:
-      - VITE_API_URL=http://localhost/api
+      - VITE_API_URL=http://70.34.223.207/api
 
 volumes:
   pgdata:
