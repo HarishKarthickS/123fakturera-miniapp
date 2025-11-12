@@ -23,3 +23,5 @@ Here are a few screenshots showcasing the application interface:
 1. Clone the repo  
 2. Run `docker-compose up --build`  
 3. Open [http://localhost](http://localhost) in your browser
+
+## Deployed Link : 70.34.223.207.vultrusercontent.com
